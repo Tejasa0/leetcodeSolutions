@@ -12,7 +12,7 @@ class Solution {
             q.offer(a);
             k--;
         }
-        int sum=0;
+        long sum=0;
         while(!q.isEmpty())
         {
             sum+=q.poll();
