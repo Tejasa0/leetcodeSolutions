@@ -5,7 +5,7 @@ class Solution {
         int [][] ans=new int[r][c];
         for (int i=0;i<r;i++) {
             for (int j=0;j<c;j++) {
-                ans[i][j]=r+c; 
+                ans[i][j]=r-1+c-1; 
             }
         }
         for(int i=0;i<r;i++)
