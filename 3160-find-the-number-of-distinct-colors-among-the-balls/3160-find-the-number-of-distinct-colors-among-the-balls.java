@@ -13,9 +13,11 @@ class Solution {
             if(idxHm.containsKey(idx))
             {
                 int existCol=idxHm.get(idx);
-                countHm.put(existCol,countHm.get(existCol)-1);
-                if(countHm.get(existCol)==0)
+                //countHm.put(existCol,countHm.get(existCol)-1);
+                if(countHm.get(existCol)==1)
                 countHm.remove(existCol);
+                else
+                countHm.put(existCol,countHm.get(existCol)-1);
             }
             idxHm.put(idx,col);
             countHm.put(col,countHm.getOrDefault(col,0)+1);
