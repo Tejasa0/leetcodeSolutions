@@ -1,41 +1,39 @@
 class Solution {
-    public int[] closestPrimes(int left, int right) {
-        int first=0;
-        int second=Integer.MAX_VALUE;
-        int min=Integer.MAX_VALUE;
-        int ans[]=new int[]{-1,-1};
-        for(int i=left;i<=right;i++)
-        {
-            if(isPrime(i))
-            {
-                if(first==0)
-                first=i;
-                else
-                {
-                    second=first;
-                    first=i;
-                    if(min>first-second)
-                    {
-                        min=first-second;
-                        ans[0]=second;
-                        ans[1]=first;
-                    }
 
+    public int[] closestPrimes(int left, int right) {
+        int prevPrime = -1, closestA = -1, closestB = -1;
+        int minDifference = (int) 1e6;
+        // Find all prime numbers in the given range
+        for (int candidate = left; candidate <= right; candidate++) {
+            if (isPrime(candidate)) {
+                if (prevPrime != -1) {
+                    int difference = candidate - prevPrime;
+                    if (difference < minDifference) {
+                        minDifference = difference;
+                        closestA = prevPrime;
+                        closestB = candidate;
+                    }
+                    // Twin prime optimization
+                    if (difference == 2 || difference == 1) return new int[] {
+                        prevPrime,
+                        candidate,
+                    };
                 }
+                prevPrime = candidate;
             }
         }
-        return ans;
+
+        return (closestA == -1)
+            ? new int[] { -1, -1 }
+            : new int[] { closestA, closestB };
     }
-    private boolean isPrime(int n) {
-        if(n<2) 
-        return false;
-        if(n==2 || n==3) 
-        return true;
-        if(n%2==0) 
-        return false;
-        for(int d=3;d*d<=n;d+=2) {
-            if(n%d==0) 
-            return false;
+
+    private boolean isPrime(int number) {
+        if (number < 2) return false;
+        if (number == 2 || number == 3) return true;
+        if (number % 2 == 0) return false;
+        for (int divisor = 3; divisor * divisor <= number; divisor += 2) {
+            if (number % divisor == 0) return false;
         }
         return true;
     }
