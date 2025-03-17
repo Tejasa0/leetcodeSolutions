@@ -14,7 +14,7 @@ class Solution {
         {
             Set<Character> uniquePal = new HashSet<>();
             char curr=s.charAt(i);
-            if(hm.get(curr)!=-1 && hm.containsKey(curr))
+            if(hm.get(curr)!=-1)
             {
                 for(int j=hm.get(curr)+1;j<i;j++)
                 {
