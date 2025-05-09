@@ -1,36 +1,31 @@
 class Solution {
-    int i = 0;
-
     public String decodeString(String s) {
+        Stack<String> stack = new Stack<>();
+        StringBuilder currStr = new StringBuilder();
+        int num = 0;
 
-        StringBuilder sb = new StringBuilder();
-        int count = 0;
-        String temp = "";
-        
-        while (i < s.length()) {
-            char c = s.charAt(i);
-        
-            i++;
-        
-            if (c == '[') {
-                temp = decodeString(s);
-        
-                int j = 0;
-        
-                while (j < count) {
-                    sb.append(temp);
-                    j++;
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                num = num * 10 + (c - '0');
+            } else if (c == '[') {
+                stack.push(currStr.toString());
+                stack.push(String.valueOf(num));
+                currStr = new StringBuilder();
+                num = 0;
+            } else if (c == ']') {
+                int repeatCount = Integer.parseInt(stack.pop());
+                String prevStr = stack.pop();
+                StringBuilder temp = new StringBuilder(prevStr);
+                for (int i = 0; i < repeatCount; i++) {
+                    temp.append(currStr);
                 }
-        
-                count = 0;
-            } else if (c == ']')
-                break;
-            else if (Character.isAlphabetic(c))
-                sb.append(c);
-            else
-                count = count * 10 + c - '0';
+                currStr = temp;
+            } else {
+                currStr.append(c);
+            }
+            System.out.println(stack);
         }
-        
-        return sb.toString();
+
+        return currStr.toString();
     }
 }
