@@ -7,24 +7,11 @@ class Solution {
                 freq[c - 'a']++;
             }
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < 26; i++) {
-                sb.append(("a"+freq[i])+(freq[i] + ""));
+            for (int i : freq) {
+                sb.append(i).append('#');
             }
-            if (hm.containsKey(sb.toString())) {
-                ArrayList<String> curr = hm.get(sb.toString());
-                curr.add(s);
-                hm.put(sb.toString(), curr);
-            } else {
-                ArrayList<String> curr = new ArrayList<>();
-                curr.add(s);
-                hm.put(sb.toString(), curr);
-            }
+            hm.computeIfAbsent(sb.toString(), k -> new ArrayList<>()).add(s);
         }
-        List<List<String>> ans = new ArrayList<>();
-        for (ArrayList<String> ls : hm.values()) {
-            ans.add(ls);
-        }
-      //  Collections.sort(ans);
-        return ans;
+        return new ArrayList<>(hm.values());
     }
 }
