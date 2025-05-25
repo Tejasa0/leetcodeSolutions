@@ -20,6 +20,7 @@ class Solution {
             } else if (hm.containsKey(rev)) {
                 count = Math.min(count, hm.get(rev));
                 ans += count * 4;
+                hm.put(curr, 0);
                 hm.put(rev, 0);
             }
         }
