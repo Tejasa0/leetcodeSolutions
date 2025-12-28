@@ -8,6 +8,13 @@ class Solution {
         return "";
     }
     private int gcd(int a, int b) {
-        return b == 0 ? a : gcd(b, a % b);
+        int i=a>b?b:a;
+        while(i>0)
+        {
+            if(a%i==0 && b%i==0)
+            return i;
+            i--;
+        }
+        return 1;
     }
 }
