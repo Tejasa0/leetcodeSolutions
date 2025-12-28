@@ -13,7 +13,7 @@ class Solution {
         {
             if(a%i==0 && b%i==0)
             return i;
-            i--;
+            i-=2;
         }
         return 1;
     }
