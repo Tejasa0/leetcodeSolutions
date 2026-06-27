@@ -17,14 +17,13 @@ class Solution {
                 } else {
                     li.add(Arrays.asList(nums[i], nums[sec], nums[third]));
                     sec++;
+                    third--;
                     while (sec < third && nums[sec] == nums[sec - 1]) {
                         sec++;
                     }
-                    while (sec < third && nums[third] == nums[third - 1]) {
+                    while (sec < third && nums[third] == nums[third + 1]) {
                         third--;
                     }
-
-                    third--;
                 }
             }
         }
