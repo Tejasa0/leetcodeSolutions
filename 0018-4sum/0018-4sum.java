@@ -12,7 +12,7 @@ class Solution {
                 int l=nums.length-1;
                 while(k<l)
                 {
-                    int sum=nums[i]+nums[j]+nums[k]+nums[l];
+                    long sum=(long)nums[i]+(long)nums[j]+(long)nums[k]+(long)nums[l];
                     if(sum<target)
                     {
                         k++;
@@ -21,13 +21,15 @@ class Solution {
                     {
                         l--;
                     }
-                    else
+                    else if(sum==target)
                     {
                         li.add(Arrays.asList(nums[i],nums[j],nums[k],nums[l]));
                         k++;
                         l--;
                         while(k<nums.length && nums[k]==nums[k-1]){
                         k++;}
+                        while(l>0 && nums[l]==nums[l+1]){
+                        l--;}
                     }
                     
                 } 
