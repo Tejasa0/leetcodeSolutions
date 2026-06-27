@@ -4,8 +4,8 @@ class Solution {
         Arrays.sort(nums);
         for(int i=0;i<nums.length;i++)
         {
-            if(i>0 && nums[i]==nums[i-1])
-            continue;
+            while(i>0 && i<nums.length && nums[i]==nums[i-1])
+            i++;
             for(int j=i+1;j<nums.length;j++)
             {
                 int k=j+1;
