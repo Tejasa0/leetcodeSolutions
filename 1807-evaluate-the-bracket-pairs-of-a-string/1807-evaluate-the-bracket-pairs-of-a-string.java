@@ -12,8 +12,9 @@ class Solution {
                 while (s.charAt(i) != ')') {
                     sb.append(s.charAt(i++));
                 }
-                if (mp.containsKey(sb.toString()))
-                    ans.append(mp.get(sb.toString()));
+                String key = sb.toString();
+                if (mp.containsKey(key))
+                    ans.append(mp.get(key));
                 else
                     ans.append('?');
             } else
